@@ -8,7 +8,7 @@ const PORT = process.env.PORT
 // const MONGODB_URI = 'mongodb://127.0.0.1:27017/chewBackEnd'
 
 // SETUP CORS middleware. Express CORS docs
-const allowedList = ['http:localhost:3000', 'your Heroku application']
+const allowedList = ['http:localhost:3000', 'https://chew-front-app.herokuapp.com']
 const corsOptions = {
   origin: (origin, callback) => {
     if(allowedList.indexOf(origin) !== -1 || !origin) {
