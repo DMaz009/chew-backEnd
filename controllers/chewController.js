@@ -15,10 +15,12 @@ reservations.get('/', (req, res) => {
 
 //POST route to create a reservation
 reservations.post('/', (req, res) => {
+  console.log(req.body);
   Chew.create(req.body, (error, createdReservation) => {
     if(error) {
       res.status(400).json({ error: error.message})
     } else {
+      console.log(createdReservation);
       res.status(200).json(createdReservation)
     }
   })

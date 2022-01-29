@@ -11,12 +11,11 @@ const reservationSchema = new Schema({
   email: {type: Number},
   contact: {type: Number},
   guests: {type: Number},
-  availability: {type: Number, default: 0},
-  favs: {type: Number, default: 0}
+  availability: {type: Number},
+  favs: {type: Number}
 })
 
+const Chew = model('Chew', reservationSchema)
 
 
-
-
-module.exports = model('Reservation', reservationSchema )
+module.exports = Chew
