@@ -5,6 +5,7 @@ const cors = require('cors')
 const session = require('express-session')
 require('dotenv').config()
 const PORT = process.env.PORT
+const request = require('request')
 // const MONGODB_URI = 'mongodb://127.0.0.1:27017/chewBackEnd'
 
 // SETUP CORS middleware. Express CORS docs
@@ -19,6 +20,10 @@ const corsOptions = {
   },
   credentials: true
 }
+
+const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=asian&key="
+const apiKey = process.env.APIKEY
+
 
 //CORS Middleware
 app.use(cors(corsOptions))
@@ -42,8 +47,14 @@ db.on('disconnected', () => { console.log('mongo disconnected')})
 //Middleware
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('HomePage')
+app.get('/google', (req, res) => {
+  request(baseURL + apiKey, { json: true }, (err, response, body) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(body.results)
+    }
+  })
 })
 
 app.use('/chew', require('./controllers/chewController'))

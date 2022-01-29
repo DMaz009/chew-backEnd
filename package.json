@@ -8,8 +8,8 @@
     "start": "node server.js"
   },
   "engines": {
-  "node": "16.13.0"
-},
+    "node": "16.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DMaz009/chew.git"
@@ -28,6 +28,8 @@
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
-    "mongoose": "^6.1.8"
+    "http-proxy-middleware": "^2.0.2",
+    "mongoose": "^6.1.8",
+    "request": "^2.88.2"
   }
 }
