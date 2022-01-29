@@ -1,20 +1,20 @@
 const express = require('express')
-const restaurants = express.Router()
+const reservations = express.Router()
 const Chew = require('../models/chewsModel')
 
 //Get Index route. List of restaurants
-restaurants.get('/', (req, res) => {
-  Chew.find({}, (error, foundRestaurants) => {
+reservations.get('/', (req, res) => {
+  Chew.find({}, (error, foundReservations) => {
     if(error) {
       res.status(400).json({ error: error.message})
     } else {
-      res.status(200).json(foundRestaurants)
+      res.status(200).json(foundReservations)
     }
   })
 })
 
 //POST route to create a reservation
-restaurants.post('/', (req, res) => {
+reservations.post('/', (req, res) => {
   Chew.create(req.body, (error, createdReservation) => {
     if(error) {
       res.status(400).json({ error: error.message})
@@ -25,7 +25,7 @@ restaurants.post('/', (req, res) => {
 })
 
 //DELETE route to remove a reseration
-restaurants.delete('/:id', (req, res) => {
+reservations.delete('/:id', (req, res) => {
   Chew.findByIdAndDelete(req.params.id, (error, deletedReservation) => {
     if(error) {
       res.status(400).json({ error: error.message})
@@ -39,7 +39,7 @@ restaurants.delete('/:id', (req, res) => {
 })
 
 //UPDATE Route to edit/change a reservation
-restaurants.put('/:id', (req, res) => {
+reservations.put('/:id', (req, res) => {
   Chew.findByIdAndUpdate(req.params.id, req.body, {new:true},
   (error, updatedReservation) => {
     if(error) {
@@ -54,7 +54,7 @@ restaurants.put('/:id', (req, res) => {
 })
 
 //PATCH Route to increment number of favs
-restaurants.patch('/addfavs/:id', (req, res) => {
+reservations.patch('/addfavs/:id', (req, res) => {
   Chew.findByIdAndUpdate(req.params.id, { $inc: {favs: 1}},
   {new:true}, (error, updatedReservation) => {
     if(error) {
@@ -68,5 +68,5 @@ restaurants.patch('/addfavs/:id', (req, res) => {
 
 
 
-module.exports = restaurants
+module.exports = reservations
 //
