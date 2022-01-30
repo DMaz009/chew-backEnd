@@ -5,12 +5,12 @@ const cors = require('cors')
 const session = require('express-session')
 require('dotenv').config()
 const PORT = process.env.PORT
-// const request = require('request')
+const request = require('request')
 // const MONGODB_URI = 'mongodb://127.0.0.1:27017/chewBackEnd'
 
 // SETUP CORS middleware. Express CORS docs
-const allowedList = ['http:localhost:3000',
-  'https://chew-front-app.herokuapp.com', 'http:localhost:3001']
+const allowedList = ['http://localhost:3000',
+  'https://chew-front-app.herokuapp.com', 'http://localhost:3001']
 const corsOptions = {
   origin: (origin, callback) => {
     if(allowedList.indexOf(origin) !== -1 || !origin) {
@@ -22,12 +22,12 @@ const corsOptions = {
   credentials: true
 }
 
-// const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=asian&key="
-// const apiKey = process.env.APIKEY
+const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=asian&key="
+const apiKey = process.env.APIKEY
 
 
 //CORS Middleware
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 
 
@@ -49,15 +49,15 @@ db.on('disconnected', () => { console.log('mongo disconnected')})
 //Middleware
 app.use(express.json())
 
-// app.get('/google', (req, res) => {
-//   request(baseURL + apiKey, { json: true }, (err, response, body) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.send(body.results)
-//     }
-//   })
-// })
+app.get('/google', (req, res) => {
+  request(baseURL + apiKey, { json: true }, (err, response, body) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(body.results)
+    }
+  })
+})
 
 app.use('/chew', require('./controllers/chewController'))
 
