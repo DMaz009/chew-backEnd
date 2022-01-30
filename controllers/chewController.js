@@ -26,7 +26,7 @@ reservations.post('/', (req, res) => {
   })
 })
 
-//DELETE route to remove a reseration
+//DELETE route to remove a reservation
 reservations.delete('/:id', (req, res) => {
   Chew.findByIdAndDelete(req.params.id, (error, deletedReservation) => {
     if(error) {
