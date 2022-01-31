@@ -19,7 +19,6 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   },
-  credentials: true
 }
 
 const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=asian&key="
