@@ -10,7 +10,7 @@ const request = require('request')
 
 // SETUP CORS middleware. Express CORS docs
 const allowedList = ['http://localhost:3000',
-  'https://chew-front-app.herokuapp.com', 'http://localhost:3001']
+  'https://chew-frontend.herokuapp.com/', 'http://localhost:3001']
 const corsOptions = {
   origin: (origin, callback) => {
     if(allowedList.indexOf(origin) !== -1 || !origin) {
